@@ -1,0 +1,35 @@
+{
+  "ruleMap": {
+    "UUID": {
+      "type": "UUID",
+      "attributes": [
+        {
+          "description": "not more than 4 messages/minute, 3 messages/half min for WA",
+          "type": "channel",
+          "value": "WA",
+          "rates": [
+            {
+              "duration": 60000000000,
+              "limit": 4
+            },
+            {
+              "duration": 30000000000,
+              "limit": 3
+            }
+          ]
+        },
+        {
+          "description": "not more than 5 messages/minute for D0 campaign",
+          "type": "campaign",
+          "value": "D0",
+          "rates": [
+            {
+              "duration": 60000000000,
+              "limit": 5
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

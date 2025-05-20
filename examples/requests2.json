@@ -1,0 +1,59 @@
+{
+  "requestMap": {
+    "r1": {
+      "parameters": {
+        "UUSFHSJKGS": {
+          "entityType": "UUID",
+          "attributesMap": {
+            "channel": "WA",
+            "campaign": "D0"
+          }
+        }
+      }
+    },
+    "r2": {
+      "parameters": {
+        "UUSFHSJKGS": {
+          "entityType": "UUID",
+          "attributesMap": {
+            "channel": "WA",
+            "campaign": "D0"
+          }
+        }
+      }
+    },
+    "r3": {
+      "parameters": {
+        "UUSFHSJKGS": {
+          "entityType": "UUID",
+          "attributesMap": {
+            "channel": "WA",
+            "campaign": "D0"
+          }
+        }
+      }
+    },
+    "r4": {
+      "parameters": {
+        "UUSFHSJKGS": {
+          "entityType": "UUID",
+          "attributesMap": {
+            "channel": "WA",
+            "campaign": "D0"
+          }
+        }
+      }
+    },
+    "r5": {
+      "parameters": {
+        "UUSFHSJKGS": {
+          "entityType": "UUID",
+          "attributesMap": {
+            "channel": "WA",
+            "campaign": "D0"
+          }
+        }
+      }
+    }
+  }
+}

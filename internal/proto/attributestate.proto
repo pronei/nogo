@@ -1,0 +1,10 @@
+syntax = "proto3";
+package ratelimiter;
+
+option go_package = "./;protobuf";
+
+message AttributeState {
+  int64 bucket = 1;
+  repeated int64 logs = 2;
+  int64 lastUpdated = 3;
+}
