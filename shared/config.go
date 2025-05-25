@@ -1,6 +1,7 @@
 package structs
 
 import (
+	"github.com/pronei/nogo/internal/enums"
 	"github.com/redis/go-redis/v9"
 )
 
@@ -8,7 +9,9 @@ import (
 type RateLimiterConfig struct {
 	Namespace           string         `json:"namespace"`
 	StrategyConfig      StrategyConfig `json:"strategyConfig"`
+	StorageType         enums.Storage  `json:"storageType"`
 	RedisConfig         RedisConfig    `json:"redisConfig"`
+	InMemoryConfig      InMemoryConfig `json:"inMemoryConfig"`
 	ExistingRedisClient *redis.Client
 }
 
@@ -25,4 +28,9 @@ type RedisConfig struct {
 	WriteTimeoutInMillis      int    `json:"writeTimeoutMs"`
 	PoolSize                  int    `json:"poolSize"`
 	DB                        int    `json:"dbNo"`
+}
+
+type InMemoryConfig struct {
+	Expiration      Duration `json:"expiration"`
+	CleanupInterval Duration `json:"cleanupInterval"`
 }

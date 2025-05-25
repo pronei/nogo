@@ -1,5 +1,13 @@
 package enums
 
+type Storage string
+
+const (
+	RedisStorage     Storage = "redis"
+	AerospikeStorage Storage = "aerospike"
+	InMemoryStorage  Storage = "in-memory"
+)
+
 type RuleAction uint8
 
 const (

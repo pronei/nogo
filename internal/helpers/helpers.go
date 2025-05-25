@@ -23,8 +23,7 @@ func GetTimeInDurationWithError(timeVal int, timeUnit string) (time.Duration, er
 		return 0, fmt.Errorf("invalid timeunit %s passed\n", timeUnit)
 	}
 	timeoutStr := strconv.Itoa(timeVal) + timeUnit
-	duration, _ := time.ParseDuration(timeoutStr)
-	return duration, nil
+	return time.ParseDuration(timeoutStr)
 }
 
 func Contains(arr []string, key string) bool {

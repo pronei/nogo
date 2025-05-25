@@ -41,13 +41,22 @@ func Create(logger helpers.Logger, config *structs.RateLimiterConfig, importedRu
 	}
 
 	var stateStore store.StateStore
-	if config.ExistingRedisClient != nil {
-		stateStore = store.FromRedisClient(logger, config.ExistingRedisClient, config.Namespace)
-	} else {
-		stateStore, err = store.NewRedisClient(logger, &config.RedisConfig, config.Namespace)
-		if err != nil {
-			return nil, fmt.Errorf("Unable to create state store - %w\n", err)
+	switch config.StorageType {
+	case enums.InMemoryStorage:
+		stateStore = store.NewMemoryClient(logger, &config.InMemoryConfig)
+	case enums.RedisStorage:
+		if config.ExistingRedisClient != nil {
+			stateStore = store.FromRedisClient(logger, config.ExistingRedisClient, config.Namespace)
+		} else {
+			stateStore, err = store.NewRedisClient(logger, &config.RedisConfig, config.Namespace)
+			if err != nil {
+				return nil, fmt.Errorf("Unable to create state store - %w\n", err)
+			}
 		}
+	case enums.AerospikeStorage:
+		fallthrough
+	default:
+		return nil, fmt.Errorf("unable to find a suitable storage layer for %v", string(config.StorageType))
 	}
 
 	rl := &rateLimiter{

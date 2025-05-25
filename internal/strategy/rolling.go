@@ -42,9 +42,7 @@ func (l *SlidingWindow) UpdateState(ruleMap map[string]structs.EntityRules, stat
 		// purge logs older than maximum of all subRule durations
 		var windowSize int64
 		for _, rate := range attrRule.Rates {
-			if rate.Duration > windowSize {
-				windowSize = rate.Duration
-			}
+			windowSize = max(windowSize, rate.Duration)
 		}
 		windowStart := currentTime - windowSize
 		idx := findWindowStartIndex(attrState.Logs, windowStart)
