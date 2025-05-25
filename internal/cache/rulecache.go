@@ -22,11 +22,13 @@ func (rc *RuleCache) SaveRules(imported *structs.RuleImport, action enums.RuleAc
 				rc.c.Delete(cacheKey)
 			case enums.RuleAdd:
 				if _, exists := rc.c.Get(cacheKey); exists {
-					return fmt.Errorf("Duplicate rule exists for %s\n", cacheKey)
+					return fmt.Errorf("duplicate rule exists for %s\n", cacheKey)
 				}
-				fallthrough
-			case enums.RuleUpdate:
 				rc.c.Set(cacheKey, attribute, cache.NoExpiration)
+			case enums.RuleUpdate:
+				if err := rc.c.Replace(cacheKey, attribute, cache.NoExpiration); err != nil {
+					return fmt.Errorf("cannot update key - %w", err)
+				}
 			}
 		}
 	}

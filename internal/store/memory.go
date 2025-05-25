@@ -2,7 +2,6 @@ package store
 
 import (
 	"context"
-	"fmt"
 	"sync"
 
 	"github.com/patrickmn/go-cache"
@@ -43,8 +42,6 @@ func (mc *memoryClient) GetState(_ context.Context, req StateRequestMap) (StateM
 			stateKey := helpers.FormKey(entityKey, attrKey)
 			if val, exists := mc.c.Get(stateKey); exists {
 				attrStateMap[attrKey] = val.(AttributeState)
-			} else {
-				return stateMap, fmt.Errorf("no state found for key - %v", stateKey)
 			}
 		}
 
